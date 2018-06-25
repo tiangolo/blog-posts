@@ -732,7 +732,7 @@ There's a demo project with all what I described here in GitHub at: <https://git
 
 Also, if you find something wrong in this article, please post an issue in that repo, or better, a pull request.
 
-[GitHub version of the article](https://github.com/tiangolo/medium-posts/tree/master/angular-in-docker-with-nginx-supporting-environments-built-with-multi-stage-docker-builds)
+[GitHub version of the article](https://github.com/tiangolo/medium-posts/tree/master/angular-in-docker)
 
 [Medium version of the article](https://medium.com/@tiangolo/angular-in-docker-with-nginx-supporting-environments-built-with-multi-stage-docker-builds-bb9f1724e984)
 

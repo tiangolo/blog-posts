@@ -477,6 +477,12 @@ But we can build an image for each environment we have, by just passing the conf
 docker build -t my-angular-project:dev --build-arg configuration="" .
 ```
 
+* If you had a `staging` configuration and environment, you could build an image for that environment with:
+
+```bash
+docker build -t my-angular-project:dev --build-arg configuration="staging" .
+```
+
 ## Test it
 
 To check that your new Docker images are working, you can start a container based on them and see the results.
@@ -486,6 +492,9 @@ To check that your new Docker images are working, you can start a container base
 ```bash
 docker run -p 80:80 my-angular-project:prod
 ```
+
+...you won't see any logs, just your terminal hanging there.
+
 * Open your browser in <http://localhost>.
 
 You should see something very similar to:

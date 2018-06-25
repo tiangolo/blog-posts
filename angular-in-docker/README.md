@@ -728,7 +728,7 @@ That's it! Angular in Docker, ready for production with great performance (thank
 
 You can also automatize that in a continuous integration/delivery environment or whatever you want very easily with those tricks (I always do that).
 
-There's a demo project with all what I described here in GitHub at: <https://github.com/tiangolo/medium-posts/tree/master/angular-in-docker-with-nginx-supporting-environments-built-with-multi-stage-docker-builds>. If you have any problem replicating this, clone the repo and compare it to your code to see what could be wrong.
+There's a demo project with all what I described here in GitHub. If you have any problem replicating this, clone the repo and compare it to your code to see what could be happening.
 
 Also, if you find something wrong in this article, please post an issue in that repo, or better, a pull request.
 

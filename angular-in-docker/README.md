@@ -1,6 +1,6 @@
 # Angular in Docker with Nginx, supporting configurations / environments, built with multi-stage Docker builds and testing with Chrome Headless
 
-**Update**: Updated on 2018-06-29, a reader asked if there was any pre-built Docker image to simplify the process (especially for testing). And as this article got quite popular, it gave me the idea and I just built one to simplify everyone's process: [`tiangolo/node-frontend`](https://github.com/tiangolo/node-frontend). So, I just updated this article to simplify the process using that image, but kept the sections about doing everything by hand as "optional".
+**Update**: Updated on 2018-06-29, a reader asked if there was any pre-built Docker image to simplify the process (especially for testing). And as this article got quite popular, I just built a Docker image to simplify everyone's process: [`tiangolo/node-frontend`](https://github.com/tiangolo/node-frontend). So, I just updated this article to simplify the process using that image, but kept the sections about doing everything by hand as "optional".
 
 **Update**: Updated on 2018-06-25, to match Angular 6 and Angular CLI 6. Updating parameters, configuration files, and versions of Node.js and Nginx. And a new section with testing using Pupeteer and Chrome headless inside Docker.
 

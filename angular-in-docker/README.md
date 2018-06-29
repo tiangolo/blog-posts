@@ -301,9 +301,9 @@ So, for our final Docker image, we will need to have a Nginx configuration. You 
 
 This article is now based on the image `tiangolo/node-frontend` and it already provides a default Nginx configuration, you just have to copy it in the last stage (don't worry, I'll cover it below). That configuration file makes sure that all the routes go to `index.html`, so that you can use your frontend router and it will work even if your users type the URL directly in the browser. If you don't want to use that image but build it form scratch based on `node`, do the following steps.
 
-<blockquote>
-
 **Optional read**
+
+<blockquote>
 
 If you want to build your image based on Node.js directly, you need to create an Nginx config file.
 
@@ -458,9 +458,11 @@ COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 
 ...that's it for the `Dockerfile`! Doing that with scripts or any other method would be a lot more cumbersome.
 
-<blockquote>
 
 **Optional read**
+
+<blockquote>
+
 
 If you don't want to use the image `tiangolo/node-frontend` but build yours from scratch based on `node` you can do it, you just have to create the Nignx config file descriibed in the Nginx section above and modify the line:
 
@@ -475,6 +477,7 @@ COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 ```
 
 ...have in mind that if you don't use `tiangolo/node-frontend` you will also have to install Puppeteer and all its dependencies by hand too.
+
 
 </blockquote>
 
@@ -667,11 +670,9 @@ It should show that the tests are run in the console, and that they are passing 
 
 The image [tiangolo/node-frontend](https://hub.docker.com/r/tiangolo/node-frontend/) already includes all the dependencies for Puppeteer, which is what is used to run your tests in Chrome Headless. So you don't have to add anything to your `Dockerfile` appart from running your tests.
 
-### Note:
-
-<blockquoute>
-
 **Optional read**
+
+<blockquote>
 
 If you don't want to use `tiangolo/node-frontend` you will have to install Puppeteer and it's dependencies by hand, here's how.
 
@@ -706,7 +707,7 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
 ...
 ```
 
-</blockquoute>
+</blockquote>
 
 * Then you can run your tests, after the section with:
 
@@ -750,10 +751,9 @@ COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 ```
 
-
-<blockquoute>
-
 **Optional read**
+
+<blockquote>
 
 If you didn't use the image `tiangolo/node-frontend` your final complete `Dockerfile` would look something like:
 
@@ -800,7 +800,7 @@ COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 ```
 
-</blockquoute>
+</blockquote>
 
 * To test that your new Docker image with tests works, just build it again, you should see the results in the console. Check the section above ...or just run:
 

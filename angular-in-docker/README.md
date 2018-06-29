@@ -303,7 +303,7 @@ This article is now based on the image `tiangolo/node-frontend` and it already p
 
 <blockquote>
 
-### Optional read
+**Optional read**
 
 If you want to build your image based on Node.js directly, you need to create an Nginx config file.
 
@@ -460,7 +460,7 @@ COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 
 <blockquote>
 
-### Optional read
+**Optional read**
 
 If you don't want to use the image `tiangolo/node-frontend` but build yours from scratch based on `node` you can do it, you just have to create the Nignx config file descriibed in the Nginx section above and modify the line:
 
@@ -671,7 +671,7 @@ The image [tiangolo/node-frontend](https://hub.docker.com/r/tiangolo/node-fronte
 
 <blockquoute>
 
-### Optional read
+**Optional read**
 
 If you don't want to use `tiangolo/node-frontend` you will have to install Puppeteer and it's dependencies by hand, here's how.
 
@@ -753,7 +753,7 @@ COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 
 <blockquoute>
 
-### Optional read
+**Optional read**
 
 If you didn't use the image `tiangolo/node-frontend` your final complete `Dockerfile` would look something like:
 

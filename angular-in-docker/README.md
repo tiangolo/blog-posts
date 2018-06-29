@@ -1,6 +1,8 @@
 # Angular in Docker with Nginx, supporting configurations / environments, built with multi-stage Docker builds and testing with Chrome Headless
 
-**Note**: Updated on 2018-06-25, to match Angular 6 and Angular CLI 6. Updating parameters, configuration files, and versions of Node.js and Nginx. And a new section with testing using Pupeteer and Chrome headless inside Docker.
+**Update**: Updated on 2018-06-29, a reader asked if there was any pre-built Docker image to simplify the process (especially for testing). And as this article got quite popular, it gave me the idea and I just built one to simplify everyone's process: [`tiangolo/node-frontend`](https://github.com/tiangolo/node-frontend). So, I just updated this article to simplify the process using that image, but kept the sections about doing everything by hand as "optional".
+
+**Update**: Updated on 2018-06-25, to match Angular 6 and Angular CLI 6. Updating parameters, configuration files, and versions of Node.js and Nginx. And a new section with testing using Pupeteer and Chrome headless inside Docker.
 
 ...that's a very long title. But that's what I'm covering, so let's dive in!
 
@@ -14,7 +16,7 @@ All this removes the need for complex building scripts or the need to add your b
 
 Also, optionally, you can run your Karma tests in Chrome Headless inside the Docker container. All the information is in the last section.
 
-This could also be adapted to any compiled front end framework like [React](https://reactjs.org/). But the main tricks you need are all below.
+This could also be adapted to any compiled frontend framework like [React](https://reactjs.org/). But the main tricks you need are all below.
 
 ## TL;DR:
 
@@ -31,18 +33,6 @@ cd my-angular-project
 ```
 
 * While developing, use `ng serve` as you normally would, to be able to use live-reload and other features. But for production deployment with Docker, and to test the "production deployment" locally, do the following.
-* Add a Nginx configuration inside your project directory, named `nginx-custom.conf`, with:
-
-```nginx
-server {
-  listen 80;
-  location / {
-    root /usr/share/nginx/html;
-    index index.html index.htm;
-    try_files $uri $uri/ /index.html =404;
-  }
-}
-```
 
 * Add a `.dockerignore` for `node_modules` with:
 
@@ -53,8 +43,8 @@ node_modules
 * Add a `Dockerfile` in your directory with:
 
 ```Dockerfile
-# Stage 0, "build-stage", based on Node.js, to build and compile Angular
-FROM node:10.5 as build-stage
+# Stage 0, "build-stage", based on Node.js, to build and compile the frontend
+FROM tiangolo/node-frontend:10 as build-stage
 
 WORKDIR /app
 
@@ -74,7 +64,8 @@ FROM nginx:1.15
 
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 
-COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+# Copy the default nginx.conf provided by tiangolo/node-frontend
+COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 ```
 
 * Build your image using the production configuration (the default), e.g.:
@@ -306,7 +297,15 @@ Nowadays, Nginx is more or less the "de facto standard" for static content servi
 
 So, for our final Docker image, we will need to have a Nginx configuration. You don't really need to know much more about it for now. As the official Docker image will do all the heavy lifting for you.
 
-But we do need to create a basic config file that we'll use later.
+### Update:
+
+This article is now based on the image `tiangolo/node-frontend` and it already provides a default Nginx configuration, you just have to copy it in the last stage (don't worry, I'll cover it below). That configuration file makes sure that all the routes go to `index.html`, so that you can use your frontend router and it will work even if your users type the URL directly in the browser. If you don't want to use that image but build it form scratch based on `node`, do the following steps.
+
+<blockquote>
+
+### Optional read
+
+If you want to build your image based on Node.js directly, you need to create an Nginx config file.
 
 * Add a Nginx configuration inside your project directory, named `nginx-custom.conf`, with:
 
@@ -339,6 +338,8 @@ Save that file, we will use it soon.
 
 This is the minimum Nginx configuration. You could finetune it more, depending on your case. If you want to explore more, read the [Nginx Beginner's Guide](http://nginx.org/en/docs/beginners_guide.html#conf_structure).
 
+</blockquote>
+
 
 ## Docker
 
@@ -364,7 +365,7 @@ Now, let's build our Docker image.
 
 ```Dockerfile
 # Stage 0, "build-stage", based on Node.js, to build and compile Angular
-FROM node:10.5 as build-stage
+FROM tiangolo/node-frontend:10 as build-stage
 
 WORKDIR /app
 
@@ -384,15 +385,15 @@ FROM nginx:1.15
 
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 
-COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
 ```
 
 ...now, let's check what all that is doing.
 
-* This will tell Docker that we will start with a base [Node.js official image](https://hub.docker.com/_/node/), notice that you won't have to install and configure Node.js inside the Linux container or anything, Docker does that for you:
+* This will tell Docker that we will start with a base image [tiangolo/node-frontend](https://hub.docker.com/r/tiangolo/node-frontend/) which in turn is based on the [Node.js official image](https://hub.docker.com/_/node/), notice that you won't have to install and configure Node.js inside the Linux container or anything, Docker does that for you:
 
 ```Dockerfile
-FROM node:10.5 as build-stage
+FROM tiangolo/node-frontend:10 as build-stage
 ```
 
 ...we also "named" this stage `build-stage`, with the `as build-stage`. We will use this name later.
@@ -449,13 +450,34 @@ FROM nginx:1.15
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 ```
 
-* Now, we'll override the `default.conf` file in Nginx with our custom `nginx-custom.conf` file that lets Angular router take care of it's routes:
+* Now, we'll override the `default.conf` file in Nginx with the custom `nginx.conf` provided in the image `tiangolo/node-frontend`. This configuration file directs everything to `index.html`, so that the Angular router can take care of it's routes:
+
+```Dockerfile
+COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
+```
+
+...that's it for the `Dockerfile`! Doing that with scripts or any other method would be a lot more cumbersome.
+
+<blockquote>
+
+### Optional read
+
+If you don't want to use the image `tiangolo/node-frontend` but build yours from scratch based on `node` you can do it, you just have to create the Nignx config file descriibed in the Nginx section above and modify the line:
+
+```Dockerfile
+COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
+```
+
+to:
 
 ```Dockerfile
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 ```
 
-...that's it for the `Dockerfile`! Doing that with scripts or any other method would be a lot more cumbersome.
+...have in mind that if you don't use `tiangolo/node-frontend` you will also have to install Puppeteer and all its dependencies by hand too.
+
+</blockquote>
+
 
 ## Build it
 
@@ -483,6 +505,8 @@ docker build -t my-angular-project:dev --build-arg configuration="" .
 docker build -t my-angular-project:dev --build-arg configuration="staging" .
 ```
 
+* All these additional builds, and all the next builds (including the `prod` one) will be very fast, as all the NPM packages will already be installed and Docker will re-use the cached layers. It will know it just has to copy your source code and compile it, etc. But if you followed the steps above it won't install everything every time. And when you add a new dependency, your `package.json` will be modified, Docker will notice it and re-install the dependencies.
+
 ## Test it
 
 To check that your new Docker images are working, you can start a container based on them and see the results.
@@ -501,7 +525,7 @@ You should see something very similar to:
 
 <img src="./readme-assets/04.png">
 
-...notice that it is served by Docker and not by Angular CLI (not in port `4200`). And notice that it says that you are running the "production" version of your front end App.
+...notice that it is served by Docker and not by Angular CLI (not in port `4200`). And notice that it says that you are running the "production" version of your frontend App.
 
 * Test your image for the development environment with:
 
@@ -629,7 +653,9 @@ ng test
 
 You can try and run that. It will run the tests in your local browser. And that's how you should test it during development.
 
-* But in a Docker container in your "integration" or "production" server, it will run in Chrome headless. So, let's first make sure that Chrome headless runs locally.
+**Note**: as of now, 2018-06-29, a new, freshly generated Angular CLI project will fail 1 test, looking for a string `'Welcome to my-frontend-project!'`, you can change the string to `'Welcome to app!'` to fix the test.
+
+* In a Docker container, in your "integration" or "production" server, the tests will run in Chrome headless. So, let's first make sure that Chrome headless runs locally.
 
 * Run a *single* (not "watch") test locally, in headless mode:
 
@@ -639,7 +665,15 @@ ng test --browsers ChromeHeadlessNoSandbox --watch=false
 
 It should show that the tests are run in the console, and that they are passing (or not), but most importantly, it shouldn't open a Chrome browser window, as it will be running in Chrome headless mode.
 
-Now, we need to integrate that with Docker.
+The image [tiangolo/node-frontend](https://hub.docker.com/r/tiangolo/node-frontend/) already includes all the dependencies for Puppeteer, which is what is used to run your tests in Chrome Headless. So you don't have to add anything to your `Dockerfile` appart from running your tests.
+
+### Note:
+
+<blockquoute>
+
+### Optional read
+
+If you don't want to use `tiangolo/node-frontend` you will have to install Puppeteer and it's dependencies by hand, here's how.
 
 Right below the line:
 
@@ -672,7 +706,9 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
 ...
 ```
 
-* Then after the section with:
+</blockquoute>
+
+* Then you can run your tests, after the section with:
 
 ```Dockerfile
 COPY ./ /app/
@@ -684,9 +720,42 @@ COPY ./ /app/
 RUN npm run test -- --browsers ChromeHeadlessNoSandbox --watch=false
 ```
 
-...that command will run the tests in headless mode, at build time. So, you can now integrate that with your CI systems and have your front end tested every time the image is built. If a test fails, the build fails. So if you set up continuous integration and deployment (automatic deployments), you can be safe knowing that you won't deploy code with broken tests.
+...that command will run the tests in headless mode, at build time. So, you can now integrate that with your CI systems and have your frontend tested every time the image is built. If a test fails, the build fails. So if you set up continuous integration and deployment (automatic deployments), you can be safe knowing that you won't deploy code with broken tests.
 
-Your final complete `Dockerfile` would look something like:
+Your final `Dockerfile` would look like:
+
+```Dockerfile
+# Stage 0, "build-stage", based on Node.js, to build and compile the frontend
+FROM tiangolo/node-frontend:10 as build-stage
+
+WORKDIR /app
+
+COPY package*.json /app/
+
+RUN npm install
+
+COPY ./ /app/
+
+ARG configuration=production
+
+RUN npm run build -- --output-path=./dist/out --configuration $configuration
+
+
+# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
+FROM nginx:1.15
+
+COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
+
+# Copy the default nginx.conf provided by tiangolo/node-frontend
+COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
+```
+
+
+<blockquoute>
+
+### Optional read
+
+If you didn't use the image `tiangolo/node-frontend` your final complete `Dockerfile` would look something like:
 
 ```Dockerfile
 # Stage 0, "build-stage", based on Node.js, to build and compile Angular
@@ -731,10 +800,17 @@ COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 ```
 
+</blockquoute>
+
+* To test that your new Docker image with tests works, just build it again, you should see the results in the console. Check the section above ...or just run:
+
+```bash
+docker build -t my-angular-project:prod . 
+```
 
 ## Done!
 
-That's it! Angular in Docker, ready for production with great performance (thanks to Nginx). A lot less error prone (thanks to Docker multi-stage builds). Supporting Angular CLI configurations and environments, thanks to Docker's `ARG` and `--build-arg`. And with integrated tests thanks to Puppeteer and Chrome headless.
+That's it! Angular in Docker, ready for production with great performance (thanks to Nginx). A lot less error prone (thanks to Docker multi-stage builds). Supporting Angular CLI configurations and environments, thanks to Docker's `ARG` and `--build-arg`. And with integrated tests thanks to Puppeteer and Chrome headless (integrated in `tiangolo/node-frontend`).
 
 You can also automatize that in a continuous integration/delivery environment or whatever you want very easily with those tricks (I always do that).
 

@@ -1,8 +1,9 @@
 # Stack service load balancing with Traefik in Rancher (Docker)
 
-<blockquote>
-Set up Traefik to load balance / proxy your Docker services in a Rancher Stack, based on Traefik rules.
-</blockquote>
+This article lives in:
+
+* [Medium](https://medium.com/@tiangolo/stack-service-load-balancing-with-traefik-in-rancher-docker-12ce15a8e35d)
+* [GitHub](https://github.com/tiangolo/medium-posts/tree/master/stack-traefik-rancher)
 
 ## Update 2018-06-30
 
@@ -11,6 +12,10 @@ Since Rancher 2.0, it no longer is a cluster management system.
 It's mostly an interfafce to Kubernetes. So, if you are using an older version of Rancher, this might be useful. Otherwise, consider it obsolete. 
 
 I'm currently writing an article on how to set up a Docker Swarm mode cluster with a Traefik main load balancer and also Traefik inside stacks (the same that this article talks about). With Docker Swarm mode it gets a lot easier, with automatic HTTPS certififcate generation for all the needed domains and a lot more robust. If you are interested in that, let me know. Also you can [follow me on Medium](https://medium.com/@tiangolo) to see when the article is published.
+
+## Description
+
+Set up Traefik to load balance / proxy your Docker services in a Rancher Stack, based on Traefik rules.
 
 ## Objective
 

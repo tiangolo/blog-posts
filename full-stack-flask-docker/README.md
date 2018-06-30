@@ -1,5 +1,10 @@
 # Full stack, modern web applications using Python Flask, Docker, Swagger and more…
 
+This article lives in:
+
+* [Medium](https://medium.com/@tiangolo/full-stack-modern-web-applications-using-python-flask-docker-swagger-and-more-b6609dedb747)
+* [GitHub](https://github.com/tiangolo/medium-posts/tree/master/full-stack-flask-docker)
+
 ## Intro
 
 At Senseta we have many complex requirements for our systems, as part of that, in many cases, we need to create equally complex full-stack web applications.

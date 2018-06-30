@@ -19,7 +19,7 @@ At some point, as part of my "free time experiments", I created the first versio
 
 I continued its development. We started using it internally at Senseta. Then it started to grow in features and popularity, it was helping other people too.
 
-And right now it seems to be one of the (or just "the"?) most popular ways to deploy a Flask application in Docker. (It's here: https://github.com/tiangolo/uwsgi-nginx-flask-docker ).
+And right now it seems to be one of the (or just "the"?) most popular ways to deploy a Flask application in Docker. (It's here: [https://github.com/tiangolo/uwsgi-nginx-flask-docker](https://github.com/tiangolo/uwsgi-nginx-flask-docker) ).
 
 But there were still several parts missing. Flask is just a micro-framework, you need a lot more than that.
 
@@ -119,9 +119,9 @@ But as it has happened several times before, you might have some of the same nee
 
 It's a project generation system (using Cookiecutter) that takes your parameters (project name, domains to use, etc) and generates a full base project that you can continue evolving as you see fit, but that already includes many of the features of a modern full stack project:
 
-### https://github.com/tiangolo/full-stack
+### [https://github.com/tiangolo/full-stack](https://github.com/tiangolo/full-stack)
 
-Note: the repository previously lived at https://github.com/senseta-os/senseta-base-project, but as I'm the only maintainer, I continued its development in the new repo.
+Note: the repository previously lived at [https://github.com/senseta-os/senseta-base-project](https://github.com/senseta-os/senseta-base-project), but as I'm the only maintainer, I continued its development in the new repo.
 
 ## Decisions, decisions…
 

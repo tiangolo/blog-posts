@@ -1,5 +1,7 @@
 # Angular in Docker with Nginx, supporting configurations / environments, built with multi-stage Docker builds and testing with Chrome Headless
 
+Note: There's an equivalent article for React in [Medium](https://medium.com/@tiangolo/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305) and [GitHub](https://github.com/tiangolo/medium-posts/tree/master/react-in-docker).
+
 **Update**: Updated on 2018-06-29, a reader asked if there was any pre-built Docker image to simplify the process (especially for testing). And as this article got quite popular, I just built a Docker image to simplify everyone's process: [`tiangolo/node-frontend`](https://github.com/tiangolo/node-frontend). So, I just updated this article to simplify the process using that image, but kept the sections about doing everything by hand as "optional".
 
 **Update**: Updated on 2018-06-25, to match Angular 6 and Angular CLI 6. Updating parameters, configuration files, and versions of Node.js and Nginx. And a new section with testing using Pupeteer and Chrome headless inside Docker.
@@ -39,7 +41,7 @@ cd my-angular-project
 node_modules
 ```
 
-* Add a `Dockerfile` in your directory with:
+* Add a `Dockerfile` to your directory with:
 
 ```Dockerfile
 # Stage 0, "build-stage", based on Node.js, to build and compile the frontend
@@ -113,7 +115,7 @@ These are the options we have, take them as the "motivation" for what we will do
 
 ### Option 1:
 
-One way to do it is to compile the app locally and add the compiled files to your Git repository. And then, when you are deploying, you just clone your repository and use those compiled files. As we are talking about Docker, you would create an image that copies and uses those compiled files. Your would probably use an [Nginx base image](https://hub.docker.com/_/nginx/) for that.
+One way to do it is to compile the app locally and add the compiled files to your Git repository. And then, when you are deploying, you just clone your repository and use those compiled files. As we are talking about Docker, you would create an image that copies and uses those compiled files. You would probably use an [Nginx base image](https://hub.docker.com/_/nginx/) for that.
 
 But you never edit those compiled files directly, they are generated from your source files. They are constantly changing, so your Git repository will grow large just because you are adding compiled code. And if someone in your team works on a feature branch and has one version of those files and he wants to merge the feature to your main branch (probably `master`), you might have lots conflicts in those files, even when the source code doesn't have conflicts. So you would have to be fixing "virtual" conflicts. There are probably other disadvantages too. So, the compiled files don't really belong in your Git repository.
 
@@ -352,7 +354,7 @@ Here, we'll see how we can use Docker multi-stage builds [Docker build-time `ARG
 
 When you build your image, Docker normally "sends" all the files in the directory to the component of Docker that builds the image. If you have a `node_modules` directory, it will take some time sending that as `node_modules` directories tend to be huge and with lots of files. But you don't need `node_modules` to be copied to your Docker image, you will install everything inside and create a `node_modules` inside your container, so, sending all your `node_modules` is a waste of time.
 
-The same way that you would add `node_modules` to your `.gitignore` file, you can use a `.dockerignore` file.
+The same way that you would add `node_modules` to your `.gitignore` file, you can use a `.dockerignore` file to tell Docker that it shouldn't "send" that directory.
 
 * Add a `.dockerignore` for `node_modules` with:
 
@@ -362,7 +364,7 @@ node_modules
 
 Now, let's build our Docker image.
 
-* Add a file named specifically `Dockerfile` in your directory, with:
+* Add a file specifically named `Dockerfile` in your directory, with:
 
 ```Dockerfile
 # Stage 0, "build-stage", based on Node.js, to build and compile Angular
@@ -405,7 +407,7 @@ FROM tiangolo/node-frontend:10 as build-stage
 WORKDIR /app
 ```
 
-* Now, this instruction copies all the files that start with `package` and end with `.json` from your source to inside the container. With the `package*.json` it will include the `package.json` file and also the `package-lock.json` if you have one, but it won't fail if you don't have it. Just that file (or those 2 files), before the rest of the source code, because we want to install everything the first time, but not everytime we change our source code. The next time we change our code and build the image, Docker will use the cached "layers" with everything installed (because the `package.json` hasn't changed) and will only compile our source code:
+* Now, this instruction copies all the files that start with `package` and end with `.json` from your source to inside the container. With the `package*.json` it will include the `package.json` file and also the `package-lock.json` if you have one, but it won't fail if you don't have it. Just that file (or those 2 files), before the rest of the source code, because we want to install everything the first time, but not every time we change our source code. The next time we change our code and build the image, Docker will use the cached "layers" with everything installed (because the `package.json` hasn't changed) and will only compile our source code:
 
 ```Dockerfile
 COPY package*.json /app/
@@ -437,7 +439,7 @@ RUN npm run build -- --output-path=./dist/out --configuration $configuration
 
 ...that will build our app, to the directory `./dist/out`. Inside the container will be in `/app/dist/out`. We are specifying the specific `--output-path=./dist/out` because otherwise by default Angular CLI would use the name of the project, for example `./dist/my-angular-project`. But we need to have a specific path to use it later. So, by fixing it to `./dist/out` you can copy-paste it directly to your project without worrying about modifying paths in several places.
 
-* In the same file, we start another section (another "stage"), like if 2 `Dockerfile`s were concatenated. That's Docker multi-stage building. It almost just looks like concatenating `Dockerfile`s. So, let's start with an [official Nginx base image](https://hub.docker.com/_/nginx/) for this "stage":
+* In the same `Dockerfile` file, we start another section (another "stage"), like if 2 `Dockerfile`s were concatenated. That's Docker multi-stage building. It almost just looks like concatenating `Dockerfile`s. So, let's start with an [official Nginx base image](https://hub.docker.com/_/nginx/) for this "stage":
 
 ```Dockerfile
 FROM nginx:1.15
@@ -486,7 +488,7 @@ COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 
 ## Build it
 
-Now we can build our image, that will compile everything and create a Nginx image ready for serving our app.
+Now we can build our image, doing it will compile everything and create a Nginx image ready for serving our app.
 
 If we just build it normally, it will use the production configuration (`production`) and environment.
 
@@ -510,7 +512,7 @@ docker build -t my-angular-project:dev --build-arg configuration="" .
 docker build -t my-angular-project:dev --build-arg configuration="staging" .
 ```
 
-* All these additional builds, and all the next builds (including the `prod` one) will be very fast, as all the NPM packages will already be installed and Docker will re-use the cached layers. It will know it just has to copy your source code and compile it, etc. But if you followed the steps above it won't install everything every time. And when you add a new dependency, your `package.json` will be modified, Docker will notice it and re-install the dependencies.
+* All these additional builds, and all the next builds (including the `prod` one) will be very fast, as all the NPM packages will already be installed and Docker will re-use the cached layers. It will know it just has to copy your source code and compile it, etc. It won't install everything every time. And when you add a new dependency, your `package.json` will be modified, Docker will notice it and re-install the dependencies.
 
 ## Test it
 

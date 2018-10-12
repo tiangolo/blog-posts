@@ -304,3 +304,12 @@ There are several additions that could be easily implemented to the cluster:
 * More tricks, recipes and tools, for different use cases...
 
 Please let me know if this was useful for you. And please let me know in the comments (in Medium) which of these topics would you like me to cover in the next articles.
+
+## About me
+
+You can follow me, contact me, check me or use my open source code:
+
+* [GitHub](https://github.com/tiangolo)
+* [Twitter](https://twitter.com/tiangolo)
+* [Linkedin](https://www.linkedin.com/in/tiangolo/)
+* [Medium](https://medium.com/@tiangolo)

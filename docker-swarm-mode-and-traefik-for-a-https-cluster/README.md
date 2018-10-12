@@ -21,17 +21,13 @@ Docker Swarm mode is comparable to Kubernetes, if you've heard of it. But this c
 
 ## Overview
 
-<figure>
-<img src="./readme-assets/traefik-ui.png">
-<figcaption>Traefik web UI, in a Docker Swarm mode cluster</figcaption>
-</figure>
-
-
 This guide shows you how to create a cluster of Linux servers managed with Docker Swarm mode to deploy your projects. From one Linux machine to many.
 
 It also shows how to set up an integrated main [Traefik](https://traefik.io/) load balancer / proxy to receive incoming connections, re-transmit communication to Docker containers based on the domains, generate TLS / SSL certificates (for HTTPS) with [Let's Encrypt](https://letsencrypt.org/) and handle HTTPS.
 
 And it shows how to expose the internal Traefik web UI through the same Traefik load balancer, using a secure HTTPS certificate and HTTP Basic Auth.
+
+<img src="./readme-assets/traefik-ui.png">
 
 The guide is designed for you to be able to have a main load balancer that covers all the Docker Swarm cluster, handles HTTPS certificates and requests for each domain. But doing it in a way that allows you to have other Traefik services inside each stack without interfering with each other, to redirect based on path in the same stack (e.g. one container handles `/` for a web frontend and another handles `/api` for an API under the same domain), or to redirect from HTTP to HTTPS selectively.
 

@@ -21,6 +21,12 @@ Docker Swarm mode is comparable to Kubernetes, if you've heard of it. But this c
 
 ## Overview
 
+<figure>
+<img src="./readme-assets/traefik-ui.png">
+<figcaption>Traefik web UI, in a Docker Swarm mode cluster</figcaption>
+</figure>
+
+
 This guide shows you how to create a cluster of Linux servers managed with Docker Swarm mode to deploy your projects. From one Linux machine to many.
 
 It also shows how to set up an integrated main [Traefik](https://traefik.io/) load balancer / proxy to receive incoming connections, re-transmit communication to Docker containers based on the domains, generate TLS / SSL certificates (for HTTPS) with [Let's Encrypt](https://letsencrypt.org/) and handle HTTPS.

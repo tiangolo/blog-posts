@@ -307,7 +307,7 @@ Please let me know if this was useful for you. And please let me know in the com
 
 ## About me
 
-You can follow me, contact me, check me or use my open source code:
+You can follow me, contact me, ask questions, see what I do, or use my open source code:
 
 * [GitHub](https://github.com/tiangolo)
 * [Twitter](https://twitter.com/tiangolo)

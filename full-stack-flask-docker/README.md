@@ -130,3 +130,12 @@ There were many experiments, investigation, and tests for each of the decisions 
 I plan to write some additional posts covering those decisions and some specifics on how to develop a back end using all these techniques. So, please let me know in the comments what are you interested in, what should I cover in a new post, which decisions or techniques would you like to see explained or any question or comment you have.
 
 I hope you find this useful. Let me know if it is.
+
+## About me
+
+You can follow me, contact me, check me or use my open source code:
+
+* [GitHub](https://github.com/tiangolo)
+* [Twitter](https://twitter.com/tiangolo)
+* [Linkedin](https://www.linkedin.com/in/tiangolo/)
+* [Medium](https://medium.com/@tiangolo)

@@ -407,3 +407,12 @@ Also, if you find something wrong in this article, please post an issue in that 
 [Medium version of the article](https://medium.com/@tiangolo/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305)
 
 And let me know if this was helpful to you!
+
+## About me
+
+You can follow me, contact me, ask questions, see what I do, or use my open source code:
+
+* [GitHub](https://github.com/tiangolo)
+* [Twitter](https://twitter.com/tiangolo)
+* [Linkedin](https://www.linkedin.com/in/tiangolo/)
+* [Medium](https://medium.com/@tiangolo)

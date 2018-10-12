@@ -831,3 +831,12 @@ Also, if you find something wrong in this article, please post an issue in that 
 [Medium version of the article](https://medium.com/@tiangolo/angular-in-docker-with-nginx-supporting-environments-built-with-multi-stage-docker-builds-bb9f1724e984)
 
 And let me know if this was helpful to you!
+
+## About me
+
+You can follow me, contact me, ask questions, see what I do, or use my open source code:
+
+* [GitHub](https://github.com/tiangolo)
+* [Twitter](https://twitter.com/tiangolo)
+* [Linkedin](https://www.linkedin.com/in/tiangolo/)
+* [Medium](https://medium.com/@tiangolo)

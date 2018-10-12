@@ -237,3 +237,13 @@ Then, you can open Traefik’s exposed web UI (exposed in port `8080` but you ca
 2018-06-30: Add deprecation notice. As Rancher 2.0 is a Kubernetes frontend.
 
 2017–10–04: Include instructions to add constraints and tags. To allow different stacks have their own Traefik service even when running on the same host. [More details can be found here, in StackOverflow](https://stackoverflow.com/questions/46575893/is-it-possible-to-limit-traefik-to-the-current-docker-compose-stack/46576600).
+
+
+## About me
+
+You can follow me, contact me, ask questions, see what I do, or use my open source code:
+
+* [GitHub](https://github.com/tiangolo)
+* [Twitter](https://twitter.com/tiangolo)
+* [Linkedin](https://www.linkedin.com/in/tiangolo/)
+* [Medium](https://medium.com/@tiangolo)

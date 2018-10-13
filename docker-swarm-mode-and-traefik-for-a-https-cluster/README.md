@@ -7,15 +7,15 @@ This article lives in:
 
 ## Intro
 
-Create a production ready, Docker based, cluster of one or more Linux servers, from scratch, in about 20 minutes.
+Create a production-ready, Docker-based, cluster of one or more Linux servers, from scratch, in about 20 minutes.
 
-With it, you can handle multiple applications in the same cluster. A "cluster" that can start as one single Linux machine, but allow you to grow. Having multiple stacks with multiple domains, all with automatic HTTPS handling, all handled by the system.
+With it, you can handle multiple applications in the same cluster. A "cluster" that can start as one single Linux machine, but allows you to grow. Having multiple stacks with multiple domains, all with automatic HTTPS handling, all managed by the system.
 
 ## Background
 
-This is the base cluster architecture that I'm using with my current team for many of the applications and projects we are building. It's also used by some friends and previous teams. It was time to share it, so others (hopefully you) can benefit too.
+This is the base cluster architecture that I'm using with my current team for many of the applications and projects we are building. It's also used by some friends and other teams. It was time to share it, so others (hopefully you) can benefit too.
 
-It is based on [Docker Swarm mode](https://docs.docker.com/engine/swarm/) which is the Docker cluster management system that comes integrated with Docker. If you have Docker, you already have Docker Swarm mode, even if you didn't know.
+It is based on [Docker Swarm mode](https://docs.docker.com/engine/swarm/) which is the Docker cluster management system that comes integrated with Docker. If you have Docker, you already have Docker Swarm mode, even if you didn't know about it.
 
 Docker Swarm mode is comparable to Kubernetes, if you've heard of it. But this cluster architecture is, as of now, what I would personally recommend for teams of less than 200 developers, or clusters of less than 1000 machines. This includes small / medium size organizations (like when you are not Google or Amazon), startups, one-man projects, and "hobby" projects. The specific reasons why I recommend it belong to another post (let me know if you would like to know them).
 
@@ -133,7 +133,7 @@ docker network create --driver=overlay traefik-public
 docker volume create traefik-public-certificates
 ```
 
-**Note**: you can store certificates in Consul and deploy Traefik in each node as a fully distributed load balancer, but that's for another post (let me know if you're interested, to write about it), for this guide we will keep it simple and deploy Traefik to a single node.
+**Note**: you can store certificates in Consul and deploy Traefik in each node as a fully distributed load balancer, but that's for another post (let me know if you're interested and I'll write about it), for this guide we will keep it simple and deploy Traefik to a single node.
 
 * Get the Swarm node ID of this node and store it in an environment variable:
 

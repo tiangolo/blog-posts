@@ -2,7 +2,7 @@
 
 This article lives in:
 
-* [Medium](https://medium.com/@tiangolo/docker-swarm-mode-and-traefik-for-a-https-cluster)
+* [Medium](https://medium.com/@tiangolo/docker-swarm-mode-and-traefik-for-a-https-cluster-20328dba6232)
 * [GitHub](https://github.com/tiangolo/medium-posts/tree/master/docker-swarm-mode-and-traefik-for-a-https-cluster)
 
 ## Intro

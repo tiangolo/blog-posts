@@ -1,4 +1,4 @@
-# Docker Swarm Mode and Traefik for a HTTPS cluster
+# Docker Swarm Mode and Traefik for an HTTPS cluster
 
 This article lives in:
 

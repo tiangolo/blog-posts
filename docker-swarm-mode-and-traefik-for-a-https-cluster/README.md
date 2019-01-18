@@ -5,6 +5,16 @@ This article lives in:
 * [Medium](https://medium.com/@tiangolo/docker-swarm-mode-and-traefik-for-a-https-cluster-20328dba6232)
 * [GitHub](https://github.com/tiangolo/medium-posts/tree/master/docker-swarm-mode-and-traefik-for-a-https-cluster)
 
+## Update
+
+I created [DockerSwarm.rocks](https://dockerswarm.rocks) to put these and related ideas together.
+
+And there's an updated version of this article, with distributed Traefik and Consul (this article is for a single node Traefik, even when running in a cluster):
+
+* <a href="https://medium.com/@tiangolo/docker-swarm-mode-and-distributed-traefik-proxy-with-https-6df45d0c0fc0" target="_blank">Medium</a>
+* <a href="https://github.com/tiangolo/medium-posts/tree/master/docker-swarm-mode-and-distributed-traefik-proxy-with-https" target="_blank">GitHub</a>
+* <a href="https://dockerswarm.rocks/traefik/" target="_blank">DockerSwarm.rocks</a>
+
 ## Intro
 
 Create a production-ready, Docker-based, cluster of one or more Linux servers, from scratch, in about 20 minutes.

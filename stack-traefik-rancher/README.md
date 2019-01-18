@@ -9,9 +9,9 @@ This article lives in:
 
 Since Rancher 2.0, it no longer is a cluster management system. 
 
-It's mostly an interfafce to Kubernetes. So, if you are using an older version of Rancher, this might be useful. Otherwise, consider it obsolete. 
+It's mostly an interface to Kubernetes. So, if you are using an older version of Rancher, this might be useful. Otherwise, consider it obsolete. 
 
-I'm currently writing an article on how to set up a Docker Swarm mode cluster with a Traefik main load balancer and also Traefik inside stacks (the same that this article talks about). With Docker Swarm mode it gets a lot easier, with automatic HTTPS certififcate generation for all the needed domains and a lot more robust. If you are interested in that, let me know. Also you can [follow me on Medium](https://medium.com/@tiangolo) to see when the article is published.
+You can now use Docker Swarm mode. It gets a lot easier, with automatic HTTPS certificate generation for all the needed domains and a lot more robust. You can see how to deploy a distributed Traefik [in this article](https://medium.com/@tiangolo/docker-swarm-mode-and-distributed-traefik-proxy-with-https-6df45d0c0fc0).
 
 ## Description
 

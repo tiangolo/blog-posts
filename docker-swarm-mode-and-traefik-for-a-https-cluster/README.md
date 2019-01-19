@@ -15,6 +15,16 @@ And there's an updated version of this article, with distributed Traefik and Con
 * <a href="https://github.com/tiangolo/medium-posts/tree/master/docker-swarm-mode-and-distributed-traefik-proxy-with-https" target="_blank">GitHub</a>
 * <a href="https://dockerswarm.rocks/traefik/" target="_blank">DockerSwarm.rocks</a>
 
+## Note
+
+If you want to have a distributed Traefik HTTPS proxy/load-balancer, you should check instead the guide for the distributed version on <a href="https://dockerswarm.rocks/traefik/" target="_blank">DockerSwarm.rocks: Traefik Proxy with HTTPS</a>. It can also run on a single node.
+
+This is the old version, having a Traefik instance on a single node. It uses a "mounted volume" instead of Consul to store HTTPS certificates.
+
+If you want to start with a single node and expect to possibly grow to more nodes, check that guide in the link above.
+
+But if you only want to have a single node and want to save the memory used by Consul, keep reading...
+
 ## Intro
 
 Create a production-ready, Docker-based, cluster of one or more Linux servers, from scratch, in about 20 minutes.

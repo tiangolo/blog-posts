@@ -165,6 +165,12 @@ export TRAEFIK_REPLICAS=3
 export TRAEFIK_REPLICAS=$(docker node ls -q | wc -l)
 ```
 
+...if you have a single node, you can set `TRAEFIK_REPLICAS` to `1`:
+
+```bash
+export TRAEFIK_REPLICAS=1
+```
+
 
 ## Create the Docker Compose file
 
@@ -193,6 +199,7 @@ services:
       - consul-data-leader:/consul/data
     environment:
       - CONSUL_BIND_INTERFACE=eth0
+      - 'CONSUL_LOCAL_CONFIG={"leave_on_terminate": true}'
     networks:
       - default
       - traefik-public

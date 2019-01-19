@@ -2,7 +2,7 @@
 
 This article lives in:
 
-* <a href="https://medium.com/@tiangolo/" target="_blank">Medium</a>
+* <a href="https://medium.com/@tiangolo/docker-swarm-with-swarmprom-for-real-time-monitoring-and-alerts-282da7890698" target="_blank">Medium</a>
 * <a href="https://github.com/tiangolo/medium-posts/tree/master/docker-swarm-with-swarmprom-for-real-time-monitoring-and-alerts" target="_blank">GitHub</a>
 * <a href="https://dockerswarm.rocks/swarmprom/" target="_blank">DockerSwarm.rocks</a>
 

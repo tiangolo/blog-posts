@@ -1,12 +1,14 @@
+# Docker Swarm with Swarmprom for real-time monitoring and alerts
+
 This article lives in:
 
 * <a href="https://medium.com/@tiangolo/" target="_blank">Medium</a>
-* <a href="https://github.com/tiangolo/medium-posts/tree/master/swarmprom-for-real-time-monitoring-and-alerts" target="_blank">GitHub</a>
+* <a href="https://github.com/tiangolo/medium-posts/tree/master/docker-swarm-with-swarmprom-for-real-time-monitoring-and-alerts" target="_blank">GitHub</a>
 * <a href="https://dockerswarm.rocks/swarmprom/" target="_blank">DockerSwarm.rocks</a>
 
 ## Intro
 
-Let's say you already set up a **<a href="https://dockerswarm.rocks" target="_blank">Docker Swarm mode</a>** cluster, with a <a href="https://dockerswarm.rocks/traefik/" target="_blank">Traefik distributed HTTPS proxy</a>.
+Let's say you already set up a **Docker Swarm mode** cluster as described in <a href="https://dockerswarm.rocks" target="_blank">DockerSwarm.rocks</a>, with a <a href="https://dockerswarm.rocks/traefik/" target="_blank">Traefik distributed HTTPS proxy</a>.
 
 Here's how you can set up <a href="https://github.com/stefanprodan/swarmprom" target="_blank">Swarmprom</a> to monitor your cluster.
 

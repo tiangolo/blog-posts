@@ -78,7 +78,7 @@ All using open source components, but making sure we use the “right” compone
 Here are some of the features (and I'm probably missing some more):
 
 * Full Docker integration (Docker based)
-* Docker Swarm Mode deployment
+* Docker Swarm Mode deployment in a cluster set up as described in <a href="https://dockerswarm.rocks" target="_blank">DockerSwarm.rocks</a>
 * Docker Compose integration and optimization for local development
 * Production ready Python web server using Nginx and uWSGI
 * Python Flask backend with:

@@ -51,11 +51,6 @@ $ cd swarmprom
 export ADMIN_USER=admin
 ```
 
-* Set and export an `ADMIN_USER` environment variable:
-
-```bash
-export ADMIN_USER=admin
-```
 
 * Set and export an `ADMIN_PASSWORD` environment variable:
 

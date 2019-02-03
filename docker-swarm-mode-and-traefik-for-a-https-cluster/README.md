@@ -201,22 +201,16 @@ export PASSWORD=changethis
 export HASHED_PASSWORD=$(openssl passwd -apr1 $PASSWORD)
 ```
 
-* Create an environment variable with the username and password in "`htpasswd`" format:
-
-```bash
-export USERNAME_PASSWORD=$USERNAME:$HASHED_PASSWORD
-```
-
 * You can check the contents with:
 
 ```bash
-echo $USERNAME_PASSWORD
+echo $HASHED_PASSWORD
 ```
 
 It will look like:
 
 ```
-admin:$apr1$89eqM5Ro$CxaFELthUKV21DpI3UTQO.
+$apr1$89eqM5Ro$CxaFELthUKV21DpI3UTQO.
 ```
 
 * Create a Traefik service, copy this long command in the terminal:
@@ -238,8 +232,8 @@ docker service create \
     --label "traefik.redirectorservice.frontend.entryPoints=http" \
     --label "traefik.redirectorservice.frontend.redirect.entryPoint=https" \
     --label "traefik.webservice.frontend.entryPoints=https" \
-    --label "traefik.frontend.auth.basic=$USERNAME_PASSWORD" \
-    traefik:v1.6 \
+    --label "traefik.frontend.auth.basic.users=${USERNAME}:${HASHED_PASSWORD}" \
+    traefik:v1.7 \
     --docker \
     --docker.swarmmode \
     --docker.watch \
@@ -279,8 +273,8 @@ The previous command explained:
 * `--label "traefik.redirectorservice.frontend.entryPoints=http"`: make the web dashboard listen to HTTP, so that it can redirect to HTTPS
 * `--label "traefik.redirectorservice.frontend.redirect.entryPoint=https"`: make Traefik redirect HTTP trafic to HTTPS for the web dashboard
 * `--label "traefik.webservice.frontend.entryPoints=https"`: make the web dashboard listen and serve on HTTPS
-* `--label "traefik.frontend.auth.basic=$USERNAME_PASSWORD"`: enable basic auth, so that not every one can access your Traefik web dashboard, it uses the username and password created above
-* `traefik:v1.6`: use the image `traefik:v1.6`
+* `--label "traefik.frontend.auth.basic.users=${USERNAME}:${HASHED_PASSWORD}"`: enable basic auth, so that not every one can access your Traefik web dashboard, it uses the username and password created above
+* `traefik:v1.7`: use the image `traefik:v1.7`
 * `--docker`: enable Docker
 * `--docker.swarmmode`: enable Docker Swarm Mode
 * `--docker.watch`: enable "watch", so it reloads its config based on new stacks and labels
@@ -315,15 +309,13 @@ And open `https://traefik.<your domain>` in your browser, you will be asked for 
 
 ## What's next
 
-The next thing would be to deploy a stack (a complete web application, with backend, frontend, database, etc) using this Docker Swarm mode cluster. It's actually very simple, as you can use Docker Compose for local development and then use the same files for deployment in the Docker Swarm mode cluster. But that's for another article... If you want to try it right now, I made this [full-stack project generator](https://github.com/tiangolo/full-stack) that you can use. It has everything set up to be deployed in a Docker Swarm mode cluster with Traefik as described in this article.
+The next thing would be to deploy a stack (a complete web application, with backend, frontend, database, etc) using this Docker Swarm mode cluster.
 
+It's actually very simple, as you can use Docker Compose for local development and then use the same files for deployment in the Docker Swarm mode cluster.
 
-There are several additions that could be easily implemented to the cluster:
+If you want to try it right now, you can check this very simple <a href="https://github.com/tiangolo/flask-frontend-docker" target="_blank">project generator with a minimal Flask backend and Vue.js frontend</a>.
 
-* Setting up [Portainer](https://portainer.io/), a web UI to manage and see your Docker Swarm mode cluster.
-* [cAdvisor](https://github.com/google/cadvisor) to monitor container resource usage.
-* Continuous Integration and Continuous Delivery (CI / CD) with [GitLab CI](https://about.gitlab.com/features/gitlab-ci-cd/), [Drone.io](https://drone.io/), [Travis](https://travis-ci.org) or others. As it's Docker based, it's very simple and similar for all of them.
-* More tricks, recipes and tools, for different use cases...
+There are several additions that could be easily added to the cluster, like monitoring, administration, Continuous Integration, etc. To learn more, check <a href="https://dockerswarm.rocks" target="_blank">DockerSwarm.rocks</a>.
 
 Please let me know if this was useful for you. And please let me know in the comments (in Medium) which of these topics would you like me to cover in the next articles.
 

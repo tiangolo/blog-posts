@@ -4,7 +4,7 @@
 
 This article lives in:
 
-* <a href="https://medium.com/@tiangolo/" target="_blank">Medium</a>
+* <a href="https://medium.com/@tiangolo/introducing-fastapi-fdc1206d453f" target="_blank">Medium</a>
 * <a href="https://github.com/tiangolo/medium-posts/tree/master/introducing-fastapi" target="_blank">GitHub</a>
 * <a href="https://fastapi.tiangolo.com" target="_blank">FastAPI (original documentation)</a>
 

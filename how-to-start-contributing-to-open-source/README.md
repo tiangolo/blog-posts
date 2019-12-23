@@ -6,9 +6,9 @@ Here's a tip to help you get started contributing to **open source** (if you hav
 
 This article lives in:
 
-* [Dev.to]()
-* [Medium]()
-* [GitHub]()
+* [Dev.to](https://dev.to/tiangolo/how-to-start-contributing-to-open-source-1jmg)
+* [Medium](https://medium.com/@tiangolo/how-to-start-contributing-to-open-source-49488f3ad6e)
+* [GitHub](https://github.com/tiangolo/blog-posts/blob/master/how-to-start-contributing-to-open-source/README.md)
 
 ## TL;DR
 

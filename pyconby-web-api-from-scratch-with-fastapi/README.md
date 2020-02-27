@@ -2,8 +2,8 @@
 
 This article lives in:
 
-* [Dev.to](https://dev.to/tiangolo/)
-* [Medium](https://medium.com/@tiangolo/)
+* [Dev.to](https://dev.to/tiangolo/build-a-web-api-from-scratch-with-fastapi-the-workshop-2ehe)
+* [Medium](https://medium.com/@tiangolo/build-a-web-api-from-scratch-with-fastapi-the-workshop-866d089d23dc)
 * [GitHub](https://github.com/tiangolo/blog-posts/blob/master/pyconby-web-api-from-scratch-with-fastapi/README.md)
 
 ## The first FastAPI workshop at PyCon Belarus
@@ -20,7 +20,7 @@ https://twitter.com/pyconby/status/1230797331429306368
 
 ## Creating the workshop
 
-When creating the workshop I got a bit excited, and created too much content for the time I had available.
+When creating the workshop I got a bit excited and created too much content for the time I had available.
 
 The final app ended up having basic OAuth2 authentication, authorization handling with dependencies, tests with full coverage, etc.
 

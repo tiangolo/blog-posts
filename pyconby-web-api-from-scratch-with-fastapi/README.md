@@ -303,7 +303,7 @@ $ uvicorn app.main:app --reload
 
 ## Final Version
 
-The final version of the source code is here: 
+The final version of the source code is here: https://github.com/tiangolo/blog-posts/tree/master/pyconby-web-api-from-scratch-with-fastapi/apiapp
 
 ## Additional scripts
 

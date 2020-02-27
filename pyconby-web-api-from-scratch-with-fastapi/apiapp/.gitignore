@@ -1,0 +1,7 @@
+__pycache__
+*.pyc
+.coverage
+app.db
+test.db
+env
+htmlcov

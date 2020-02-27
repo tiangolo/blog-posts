@@ -1,5 +1,13 @@
 # Build a web API from scratch with FastAPI - the workshop
 
+This article lives in:
+
+* [Dev.to](https://dev.to/tiangolo/)
+* [Medium](https://medium.com/@tiangolo/)
+* [GitHub](https://github.com/tiangolo/blog-posts/blob/master/pyconby-web-api-from-scratch-with-fastapi/README.md)
+
+## The first FastAPI workshop at PyCon Belarus
+
 Last weekend I had the chance to go to [PyCon Belarus](https://by.pycon.org/), I had a great time and met a lot of great people.
 
 I gave a talk there:
@@ -10,6 +18,8 @@ And a workshop with about 60 people:
 
 https://twitter.com/pyconby/status/1230797331429306368
 
+## Creating the workshop
+
 When creating the workshop I got a bit excited, and created too much content for the time I had available.
 
 The final app ended up having basic OAuth2 authentication, authorization handling with dependencies, tests with full coverage, etc.
@@ -18,11 +28,15 @@ I "gave" a test trial of the full workshop to [Camila](https://twitter.com/Maria
 
 But as it was made in incremental steps, completing a full new version of the app at every step (or every 2 steps), we could start it and go through it, step by step, and advance as much as possible. And wherever we ended up by the end would still be a valid version of the app.
 
+## The first version of the workshop
+
 The speed of a workshop like this has a constant tradeoff, as there's always people that finish some part faster than others, so, at some points some people will be "bored" while others will be stressed finishing some part before the next comes.
 
 But nevertheless, at the workshop in PyCon Belarus developers were quite fast, and we were able to go up to version 8 of the app, while I was expecting to get only up to about version 5.
 
 But there were 15 versions. So, for those that wanted to see the final version, here it is.
+
+## Source code for the final version
 
 I don't have an easy way to provide it step by step with all the explanations here, but if you are curious you can still check here the last version of the code.
 
@@ -318,3 +332,13 @@ And there is a script to **format** all the code automatically:
 ```console
 $ bash format.sh
 ```
+
+## About me
+
+You can follow me, contact me, ask questions, see what I do, or use my open source code:
+
+* [GitHub](https://github.com/tiangolo)
+* [Twitter](https://twitter.com/tiangolo)
+* [Linkedin](https://www.linkedin.com/in/tiangolo/)
+* [Dev.to](https://dev.to/tiangolo)
+* [Medium](https://medium.com/@tiangolo)

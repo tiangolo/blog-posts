@@ -2,9 +2,9 @@
 
 This article lives in:
 
-* [Dev.to](https://dev.to/tiangolo/)
-* [Medium](https://medium.com/@tiangolo/)
-* [GitHub](https://github.com/tiangolo/blog-posts/blob/master/async---/README.md)
+* [Dev.to](https://dev.to/tiangolo/concurrent-burgers-understand-async-await-3n20)
+* [Medium](https://medium.com/@tiangolo/concurrent-burgers-understand-async-await-eeec05ae7cfe)
+* [GitHub](https://github.com/tiangolo/blog-posts/blob/master/concurrent-burgers-understand-async-await/README.md)
 * [FastAPI's docs](https://fastapi.tiangolo.com/async/) (including translations to other languages)
 
 ## Intro
@@ -241,7 +241,7 @@ The key here is the `await`. It tells Python that it has to wait ⏸ for `get_bu
 
 For `await` to work, it has to be inside a function that supports this asynchronicity. To do that, you just declare it with `async def`:
 
-```Python hl_lines="1"
+```Python
 async def get_burgers(number: int):
     # Do some asynchronous stuff to create the burgers
     return burgers
@@ -249,7 +249,7 @@ async def get_burgers(number: int):
 
 ...instead of `def`:
 
-```Python hl_lines="2"
+```Python
 # This is not asynchronous
 def get_sequential_burgers(number: int):
     # Do some sequential stuff to create the burgers
@@ -277,7 +277,7 @@ But before that, handling asynchronous code was quite more complex and difficult
 
 In previous versions of Python, you could have used threads or <a href="http://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
 
-In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which lead to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
+In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
 
 ## Coroutines
 

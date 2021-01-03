@@ -2,8 +2,8 @@
 
 This article lives in:
 
-* [Dev.to](https://dev.to/tiangolo/)
-* [Medium](https://medium.com/@tiangolo/)
+* [Dev.to](https://dev.to/tiangolo/fastapi-top-level-dependencies-8ah)
+* [Medium](https://tiangolo.medium.com/fastapi-top-level-dependencies-4d083a93a7ac)
 * [GitHub](https://github.com/tiangolo/blog-posts/blob/master/fastapi-top-level-dependencies/README.md)
 
 ## Intro
@@ -101,7 +101,7 @@ def main():
 
 ## Global dependencies
 
-The same way, you can now also declare `dependencies` that apply to **all** the *path operations* in the `FastAPI` application:
+In the same way, you can now also declare `dependencies` that apply to **all** the *path operations* in the `FastAPI` application:
 
 ```Python
 from fastapi import FastAPI, Depends
@@ -142,5 +142,5 @@ You can follow me, contact me, see what I do, or use my open source code:
 * [Twitter: tiangolo](https://twitter.com/tiangolo)
 * [LinkedIn: tiangolo](https://www.linkedin.com/in/tiangolo/)
 * [Dev: tiangolo.to](https://dev.to/tiangolo)
-* [Medium: tiangolo](https://medium.com/@tiangolo)
+* [Medium: tiangolo](https://tiangolo.medium.com/)
 * [Web: tiangolo.com](https://tiangolo.com)

@@ -1,0 +1,17 @@
+services:
+
+  backend:
+    ports:
+      - 80:80
+
+  streamlit:
+    ports:
+      - 8080:80
+
+  panel:
+    ports:
+      - 8090:80
+
+networks:
+  traefik-public:
+    external: false

@@ -1,0 +1,96 @@
+services:
+
+  backend:
+    build: ./
+    restart: always
+    labels:
+      # Enable Traefik for this specific "backend" service
+      - traefik.enable=true
+      # Define the port inside of the Docker service to use
+      - traefik.http.services.app.loadbalancer.server.port=80
+      # Make Traefik use this domain in HTTP
+      - traefik.http.routers.app-http.entrypoints=http
+      - traefik.http.routers.app-http.rule=Host(`fastapi-with-traefik.example.com`)
+      # Use the traefik-public network (declared below)
+      - traefik.docker.network=traefik-public
+      # Make Traefik use this domain in HTTPS
+      - traefik.http.routers.app-https.entrypoints=https
+      - traefik.http.routers.app-https.rule=Host(`fastapi-with-traefik.example.com`)
+      - traefik.http.routers.app-https.tls=true
+      # Use the "le" (Let's Encrypt) resolver
+      - traefik.http.routers.app-https.tls.certresolver=le
+      # https-redirect middleware to redirect HTTP to HTTPS
+      - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
+      - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
+      # Middleware to redirect HTTP to HTTPS
+      - traefik.http.routers.app-http.middlewares=https-redirect
+      - traefik.http.routers.app-https.middlewares=admin-auth
+    networks:
+      # Use the public network created to be shared between Traefik and
+      # any other service that needs to be publicly available with HTTPS
+      - traefik-public
+
+  streamlit:
+    build:
+      context: ./
+      dockerfile: ./streamlit.dockerfile
+    restart: always
+    labels:
+      # Enable Traefik for this specific "backend" service
+      - traefik.enable=true
+      # Define the port inside of the Docker service to use
+      - traefik.http.services.streamlit.loadbalancer.server.port=80
+      # Make Traefik use this domain in HTTP
+      - traefik.http.routers.streamlit-http.entrypoints=http
+      - traefik.http.routers.streamlit-http.rule=Host(`streamlit.fastapi-with-traefik.example.com`)
+      # Use the traefik-public network (declared below)
+      - traefik.docker.network=traefik-public
+      # Make Traefik use this domain in HTTPS
+      - traefik.http.routers.streamlit-https.entrypoints=https
+      - traefik.http.routers.streamlit-https.rule=Host(`streamlit.fastapi-with-traefik.example.com`)
+      - traefik.http.routers.streamlit-https.tls=true
+      # Use the "le" (Let's Encrypt) resolver
+      - traefik.http.routers.streamlit-https.tls.certresolver=le
+      # Middleware to redirect HTTP to HTTPS
+      - traefik.http.routers.streamlit-http.middlewares=https-redirect
+      - traefik.http.routers.streamlit-https.middlewares=admin-auth
+    networks:
+      # Use the public network created to be shared between Traefik and
+      # any other service that needs to be publicly available with HTTPS
+      - traefik-public
+  
+  panel:
+    build:
+      context: ./
+      dockerfile: ./panel.dockerfile
+    restart: always
+    environment:
+      - BOKEH_ALLOW_WS_ORIGIN=localhost:8090,panel.fastapi-with-traefik.example.com
+
+    labels:
+      # Enable Traefik for this specific "backend" service
+      - traefik.enable=true
+      # Define the port inside of the Docker service to use
+      - traefik.http.services.panel.loadbalancer.server.port=80
+      # Make Traefik use this domain in HTTP
+      - traefik.http.routers.panel-http.entrypoints=http
+      - traefik.http.routers.panel-http.rule=Host(`panel.fastapi-with-traefik.example.com`)
+      # Use the traefik-public network (declared below)
+      - traefik.docker.network=traefik-public
+      # Make Traefik use this domain in HTTPS
+      - traefik.http.routers.panel-https.entrypoints=https
+      - traefik.http.routers.panel-https.rule=Host(`panel.fastapi-with-traefik.example.com`)
+      - traefik.http.routers.panel-https.tls=true
+      # Use the "le" (Let's Encrypt) resolver
+      - traefik.http.routers.panel-https.tls.certresolver=le
+      # Middleware to redirect HTTP to HTTPS
+      - traefik.http.routers.panel-http.middlewares=https-redirect
+      - traefik.http.routers.panel-https.middlewares=admin-auth
+    networks:
+      # Use the public network created to be shared between Traefik and
+      # any other service that needs to be publicly available with HTTPS
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true

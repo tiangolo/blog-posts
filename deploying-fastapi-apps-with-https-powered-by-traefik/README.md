@@ -2,8 +2,8 @@
 
 This article lives in:
 
-* [Dev.to](https://dev.to/tiangolo/)
-* [Medium](https://tiangolo.medium.com/)
+* [Dev.to](https://dev.to/tiangolo/deploying-fastapi-and-other-apps-with-https-powered-by-traefik-5dik)
+* [Medium](https://tiangolo.medium.com/deploying-fastapi-and-other-apps-with-https-powered-by-traefik-e30b5058b98d)
 * [GitHub](https://github.com/tiangolo/blog-posts/blob/master/deploying-fastapi-apps-with-https-powered-by-traefik/README.md)
 
 ## Intro
@@ -14,19 +14,19 @@ Let's say you have a **FastAPI** application... or actually, any other type of w
 
 Now let's say it all works well locally, on your machine.
 
-But in most of the cases, the purpose of these web apps is to be available on the real web (not only on your machine), so that others can actually access them.
+But in most cases, the purpose of these web apps is to be available on the real web (not only on your machine), so that others can actually access them.
 
 So you need to "deploy" them somewhere, on a remote server.
 
-And then you would want to have secure comunication between your app clients (web browsers, mobile apps, etc.) and your server web application.
+And then you would want to have secure communication between your app clients (web browsers, mobile apps, etc.) and your server web application.
 
 So, you should have **HTTPS**. 🔒
 
-But although it might sound like a simple "option" to enable, it's quite more complex than than... and [Traefik](https://doc.traefik.io/traefik/) can help you a lot.
+But although it might sound like a simple "option" to enable, it's quite more complex than that... and [Traefik](https://doc.traefik.io/traefik/) can help you a lot.
 
 ---
 
-I have been a long time fan of Traefik, even before creating FastAPI.
+I have been a long-time fan of Traefik, even before creating FastAPI.
 
 And recently I had the chance to make an event/webinar with them. 🎉
 
@@ -50,9 +50,9 @@ Then you can go and read the short summary of what you need to know as a _develo
 
 ## Domain name
 
-HTTPS is tied to a domain name, because the TLS certificate is for that specific domain name.
+HTTPS is tied to a domain name because the TLS certificate is for that specific domain name.
 
-So, you need to have one, or buy one.
+So, you need to have one or buy one.
 
 I buy my domains at <a title="This link has my referral code, if you don't want to use it, you can also type it in the browser. 🤷" href="https://www.name.com/referral/16bb2">Name.com</a>, it's quite cheap and it has worked quite well for me.
 
@@ -70,9 +70,9 @@ For simplicity, I would suggest these providers:
 
 I personally have things in each one of those. They all work great, they have a simple and nice user experience, and are quite cheap.
 
-Even with $5 or $10 USD a month is enough to have one of the small servers up and running.
+Even $5 or $10 USD a month is enough to have one of the small servers up and running.
 
-You can also go and use one of the giant cloud infrastructure providers if you want, learn all their terminology and components, set up all the accounts, permissions, etc. And then use them. But for this example I would suggest one of the three above as it will be a lot simpler.
+You can also go and use one of the giant cloud infrastructure providers if you want, learn all their terminology and components, set up all the accounts, permissions, etc. And then use them. But for this example, I would suggest one of the three above as it will be a lot simpler.
 
 ## DNS records
 
@@ -86,7 +86,7 @@ Those records are stored in "Name Servers". All of these cloud providers above h
 
 **Tip**: those same DNS records are also used for configuring email, and other related small things.
 
-**Note**: all these Name Server and DNS changes are automatically copied and replicated through the web, so that everyone on the world know where to access the information about your domain, and then, with that they will know to which IP they should talk to when interacting with your domain. Because that replication takes some time, after you save some of these changes, they can take from minutes to hours to be ready.
+**Note**: all these Name Server and DNS changes are automatically copied and replicated through the web so that everyone in the world knows where to access the information about your domain, and then, with that, they will know to which IP they should talk to when interacting with your domain. Because that replication takes some time, after you save some of these changes, they can take from minutes to hours to be ready.
 
 ### Name Servers
 
@@ -106,11 +106,11 @@ ns3.digitalocean.com
 
 ### DNS Records
 
-After you configure the **Name Servers** for your domain to be the ones for your cloud provider, you can now go to that cloud provider and set up the **DNS records**.
+After you configure the **Name Servers** for your domain to be the ones for your cloud provider, you can now go to that cloud provider and set up the **DNS Records**.
 
-Depending on your cloud provider, they will have some section to configure "domains", "domain zones", or "networks", in the end they all refer to the same configurations for **DNS records** for a specific domain.
+Depending on your cloud provider, they will have some section to configure "domains", "domain zones", or "networks", in the end, they all refer to the same configurations for **DNS records** for a specific domain.
 
-So, the next step, is to create a configuration there for your specific domain (sometimes called a "domain zone").
+So, the next step is to create a configuration there for your specific domain (sometimes called a "domain zone").
 
 Then, inside of that domain configuration, you need to add a **DNS record** to point any web communication to your cloud server.
 
@@ -118,9 +118,9 @@ There are several types of DNS records, the one we need is an **A record**, when
 
 An **A record** has an **IP** and a **hostname**.
 
-The **IP** would be be the one for your remote server. You might need to go to the section in the dashboard where your server is located to copy that IP.
+The **IP** would be the one for your remote server. You might need to go to the section in the dashboard where your server is located to copy that IP.
 
-The **hostname** would be your domain, or any sub-domain. So, if you bought `example.com`, you can set the record to `example.com`, or to `somesubdomain.example.com` or also `a.long.sub.domain.example.com`. In most cases you can even use `*.example.com`, that will match any sub-domain and point it to the IP you specify.
+The **hostname** would be your domain or any sub-domain. So, if you bought `example.com`, you can set the record to `example.com`, or to `somesubdomain.example.com` or also `a.long.sub.domain.example.com`. In most cases, you can even use `*.example.com`, which will match any sub-domain and point it to the IP you specify.
 
 You can create multiple **A records**, one for each domain or sub-domain. And each of them can point to different IPs. That's also why you see some applications that use several domains, like `dashboard.example.com` and `api.example.com`, to handle different parts of the same system in different servers.
 
@@ -128,7 +128,7 @@ You can create multiple **A records**, one for each domain or sub-domain. And ea
 
 ### Wait
 
-You might have to wait some time for these DNS changes to replicate.
+You might have to wait sometime for these DNS changes to replicate.
 
 You can test if your computer already has access to the most recent version of your records with the tool `ping` from the command line. For example, checking for the domain `tiangolo.com`:
 
@@ -188,7 +188,7 @@ Notice that we are using the official FastAPI Docker image: `tiangolo/uvicorn-gu
 
 The official base Docker image does most of the work for us, so we just have to copy the code inside.
 
-Make sure you have [Docker installed](https://docs.docker.com/get-docker/) in your local computer and in the remote server.
+Make sure you have [Docker installed](https://docs.docker.com/get-docker/) on your local computer and in the remote server.
 
 ## Prepare your cloud server
 
@@ -212,7 +212,7 @@ apt upgrade
 
 ## Docker Compose
 
-We are using Docker Compose to manage all the configurations. So make you you [install Docker Compose](https://docs.docker.com/compose/install/) locally and on the remote server.
+We are using Docker Compose to manage all the configurations. So make you [install Docker Compose](https://docs.docker.com/compose/install/) locally and on the remote server.
 
 To prevent Docker Compose from hanging, install `haveged`:
 
@@ -220,19 +220,19 @@ To prevent Docker Compose from hanging, install `haveged`:
 apt install haveged
 ```
 
-**Technical Details**: Docker Compose uses the internal pseudo-random number generators of the machine. But in a freshly installed/created cloud server it might not have enough of that "randomness". And that could make the Docker Compose commands to hang forever waiting for enough "randomness" to use. `haveged` prevents/fixes that issue.
+**Technical Details**: Docker Compose uses the internal pseudo-random number generators of the machine. But in a freshly installed/created cloud server, it might not have enough of that "randomness". And that could make the Docker Compose commands hang forever waiting for enough "randomness" to use. `haveged` prevents/fixes that issue.
 
 After that, you can check that Docker Compose works correctly.
 
 ## Docker Compose files
 
-For all the detailed explanation of the Docker Compose files, [check the video recording](https://traefik.io/resources/traefik-fastapi-kuberrnetes-ai-ml/?utm_campaign=Influencer:%20Sebastian%20Ramirez,%20FastAPI%20&utm_content=155438367&utm_medium=social&utm_source=twitter&hss_channel=tw-4890312130).
+For all the detailed explanations of the Docker Compose files, [check the video recording](https://traefik.io/resources/traefik-fastapi-kuberrnetes-ai-ml/?utm_campaign=Influencer:%20Sebastian%20Ramirez,%20FastAPI%20&utm_content=155438367&utm_medium=social&utm_source=twitter&hss_channel=tw-4890312130).
 
 Make sure you update the domains from `example.com` to use yours, and the email to register with Let's Encrypt, you will receive notifications about your expiring certificates in that email.
 
-Also make sure you add the right **DNS records** for your main application, and for the Traefik dashboard, and update them in the Docker Compose files accordingly.
+Also, make sure you add the right **DNS records** for your main application, and for the Traefik dashboard, and update them in the Docker Compose files accordingly.
 
-Here are the Docker Compose files are for you to copy them easily.
+Here are the Docker Compose files if you want to easily copy them.
 
 * `docker-compose.traefik.yml`:
 
@@ -376,7 +376,7 @@ networks:
 
 ## Start the stacks
 
-There are many approaches for putting your code and Docker images in your server.
+There are many approaches for putting your code and Docker images on your server.
 
 You could have a very sophisticated Continuous Integration system. But for this example using a simple `rsync` would be enough.
 
@@ -450,9 +450,9 @@ But with this, you already have the minimum to serve your users a secure applica
 
 And as your deployment is based on Docker, and can be replicated easily and quickly, you could destroy that server, create a new one from scratch, and be live again in minutes. Because it doesn't depend on _that_  specific server.
 
-All the important configurations and setup is in your Docker Compose files.
+All the important configurations and setup are in your Docker Compose files.
 
-And all the important logic and setup of the actual app is in the Docker image (with the `Dockerfile`).
+And all the important logic and setup of the actual app are in the Docker image (with the `Dockerfile`).
 
 And Docker itself is taking care of having your application running, restarting it after failures or reboots, etc.
 

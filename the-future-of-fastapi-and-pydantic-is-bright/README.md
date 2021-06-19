@@ -2,8 +2,8 @@
 
 This article lives in:
 
-* [Dev.to](https://dev.to/tiangolo/)
-* [Medium](https://tiangolo.medium.com/)
+* [Dev.to](https://dev.to/tiangolo/the-future-of-fastapi-and-pydantic-is-bright-3pbm)
+* [Medium](https://tiangolo.medium.com/the-future-of-fastapi-and-pydantic-is-bright-2d1785a603a9)
 * [GitHub](https://github.com/tiangolo/blog-posts/blob/master/the-future-of-fastapi-and-pydantic-is-bright/README.md)
 
 ## In very short
@@ -76,7 +76,7 @@ Then you could open your browser and interact with the API docs at `http://127.0
 
 But here we want to focus on what happens behind the scenes.
 
-**Note**: Instead of using the last two lines, you could have used the `uvicorn` command, and that's what you would normally do. But for this example it will be useful to see everything from the point of view of the `python` command.
+**Note**: Instead of using the last two lines, you could have used the `uvicorn` command, and that's what you would normally do. But for this example, it will be useful to see everything from the point of view of the `python` command.
 
 ### How Python works
 
@@ -122,9 +122,9 @@ Another term commonly used to refer to doing things at **runtime** is to do thin
 
 ### What is Static Analysis
 
-The counterpart of **runtime**, would be **static**. It just means that the code is not being executed. It's treated just as a text file containing code.
+The counterpart of **runtime** would be **static**. It just means that the code is not being executed. It's treated just as a text file containing code.
 
-In many cases, "static" is used when saying **Static Analysis**, **Static Checking**, **Static Type Checking**, etc. It refers to tools that understand the rules of the **Python** Programming Language and that can analyze the code, but that don't execute the code itself.
+In many cases, "static" is used when saying **Static Analysis**, **Static Checking**, **Static Type Checking**, etc. It refers to tools that understand the rules of the **Python** Programming Language and that can analyze the code, but that doesn't execute the code itself.
 
 These tools for **static analysis** can check if the code is following the rules correctly, checking that the code is valid, providing autocompletion, and other features. When you are editing code and your editor shows a squiggly red line with an error somewhere, that is **static analysis**.
 
@@ -264,7 +264,7 @@ And we, the developers would be much happier not having to remember where to put
 
 And we would be able to keep using autocompletion and type checks even in these type annotations with forward references. For example, triggering autocompletion inside a string, with the previous technique, might not always work, but with this change that wouldn't be a problem anymore.
 
-And in the case that some tool ended up using these type annotations at runtime for other reasons, there where still ways to get the information at runtime, with some *small caveats*, but it was still possible.
+And in the case that some tool ended up using these type annotations at runtime for other reasons, there were still ways to get the information at runtime, with some *small caveats*, but it was still possible.
 
 **Spoiler Alert**: These *small caveats* are what later would become a cumbersome problem for Pydantic, but we'll get there.
 
@@ -303,7 +303,7 @@ This has been there, available since Python 3.7. And that behavior was planned t
 
 Now, forward to the present, a couple of months ago.
 
-[Pydantic already has *some* support](https://pydantic-docs.helpmanual.io/usage/postponed_annotations/) for using `from __future__ import annotations` in the code as made possible by PEP 563. And in many cases it works fine. For example, this works:
+[Pydantic already has *some* support](https://pydantic-docs.helpmanual.io/usage/postponed_annotations/) for using `from __future__ import annotations` in the code as made possible by PEP 563. And in many cases, it works fine. For example, this works:
 
 ```python
 from __future__ import annotations
@@ -368,7 +368,7 @@ To solve it in this case, you could move the `Item` class outside of the functio
 
 These types of disconcerting problems would be especially inconvenient for newcomers to Python (and probably to many experienced Python developers as well), as the problem is not obvious at all for someone that doesn't know the internals (it wasn't obvious to me, and I built FastAPI and Typer 😅).
 
-Python is an example of a very inclusive global tech community, welcoming newcomers from all around the world, from many disciplines. It is being used to solve the most complex problems, including taking pictures of black holes, running drones on Mars, and building the most sophisticated artifical intelligence systems. But at the same time, it's many people's first programing language for its ease of use and its simplicity. And many Python developers don't even consider themselves "developers", even while they use it to solve problems.
+Python is an example of a very inclusive global tech community, welcoming newcomers from all around the world, from many disciplines. It is being used to solve the most complex problems, including taking pictures of black holes, running drones on Mars, and building the most sophisticated artificial intelligence systems. But at the same time, it's many people's first programing language for its ease of use and its simplicity. And many Python developers don't even consider themselves "developers", even while they use it to solve problems.
 
 So, having an inconvenience like this by default would not be ideal. There are other caveats but I don't want to go deeper into the technical details than I already have. You can read more about them on the [Pydantic issue](https://github.com/samuelcolvin/pydantic/issues/2678), the [mailing list thread](https://mail.python.org/archives/list/python-dev@python.org/thread/QSASX6PZ3LIIFIANHQQFS752BJYFUFPY/#UITB2A657TAINAGWGRD6GCKWFC5PEBIZ), and [Łukasz's detailed explanation](https://mail.python.org/archives/list/python-dev@python.org/thread/ZBJ7MD6CSGM6LZAOTET7GXAVBZB7O77O/).
 
@@ -424,7 +424,7 @@ Here's another big shoutout to [Pablo Galindo](https://twitter.com/pyblogsal), w
 
 The decision was to keep the current behavior, of allowing `from __future__ import annotations` in the code, as defined by PEP 563, but not as the default behavior.
 
-This will provide enough time to find a solution or an alternative that works for all the use cases, including Pydantic, FastAPI, and also the uses cases that are interested exclusively in static analysis.
+This will provide enough time to find a solution or an alternative that works for all the use cases, including Pydantic, FastAPI, and also the use cases that are interested exclusively in static analysis.
 
 This is the best possible outcome for everyone. 🎉
 
@@ -444,7 +444,7 @@ Several popular and widely used cloud providers, SaaS tools, databases, etc. are
 
 The most popular code editors for Python, [PyCharm](https://www.jetbrains.com/pycharm/) and [Visual Studio Code](https://code.visualstudio.com/), have been working on improving their support for FastAPI and Pydantic. I have even talked to both teams directly. 🤓
 
-This is particularly interesting, because FastAPI was designed to have the best support from editors, to provide the best developer experience possible. FastAPI and Pydantic use almost exclusively standard features of the language. When editors improve their support (even more) for these tools, they are actually improving their support for the features of the language itself. And this benefits many other use cases apart from FastAPI and Pydantic.
+This is particularly interesting because FastAPI was designed to have the best support from editors, to provide the best developer experience possible. FastAPI and Pydantic use almost exclusively standard features of the language. When editors improve their support (even more) for these tools, they are actually improving their support for the features of the language itself. And this benefits many other use cases apart from FastAPI and Pydantic.
 
 ## Conclusion
 

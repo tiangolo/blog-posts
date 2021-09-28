@@ -2,9 +2,9 @@
 
 This article lives in:
 
-* [Dev.to](https://dev.to/tiangolo/)
-* [Medium](https://tiangolo.medium.com/)
-* [GitHub](https://github.com/tiangolo/blog-posts/blob/master/template/README.md)
+* [Dev.to](https://dev.to/tiangolo/https-for-developers-1774)
+* [Medium](https://tiangolo.medium.com/https-for-developers-5e42dcf7d4db)
+* [GitHub](https://github.com/tiangolo/blog-posts/blob/master/https-for-developers/README.md)
 * [The FastAPI docs](https://fastapi.tiangolo.com/deployment/https/)
 
 ## Intro
@@ -13,7 +13,7 @@ Here's a brief introduction to **HTTPS for developers**. 🔒
 
 This article is extracted from the [FastAPI docs about HTTPS](https://fastapi.tiangolo.com/deployment/https/).
 
-I just upgraded those docs with several explanations and diagrams, and I thought the end result is **generic** and **useful** enough for many other developers (even in other **languages** and **frameworks**) to also publish it as an post, so here it is. 🤓
+I just upgraded those docs with several explanations and diagrams, and I thought the end result is **generic** and **useful** enough for many other developers (even in other **languages** and **frameworks**) to also publish it as a post, so here it is. 🤓
 
 ## Who Is This For
 

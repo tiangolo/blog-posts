@@ -19,9 +19,6 @@ services:
       - traefik.http.routers.app-https.tls=true
       # Use the "le" (Let's Encrypt) resolver
       - traefik.http.routers.app-https.tls.certresolver=le
-      # https-redirect middleware to redirect HTTP to HTTPS
-      - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
-      - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
       # Middleware to redirect HTTP to HTTPS
       - traefik.http.routers.app-http.middlewares=https-redirect
       - traefik.http.routers.app-https.middlewares=admin-auth

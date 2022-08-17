@@ -2,9 +2,9 @@
 
 This article lives in:
 
-* [Dev.to](https://dev.to/tiangolo/)
-* [Medium](https://tiangolo.medium.com/)
-* [GitHub](https://github.com/tiangolo/blog-posts/blob/master/template/README.md)
+* [Dev.to](https://dev.to/tiangolo/the-future-of-education-and-art-4h0e)
+* [Medium](https://medium.com/@tiangolo/the-future-of-education-and-art-e515f664b778)
+* [GitHub](https://github.com/tiangolo/blog-posts/tree/master/the-future-of-education-and-art)
 
 ## Intro
 

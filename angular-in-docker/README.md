@@ -1,5 +1,13 @@
 # Angular in Docker with Nginx, supporting configurations / environments, built with multi-stage Docker builds and testing with Chrome Headless
 
+## WARNING - Obsolete 🚨
+
+This is a very old article, using old versions of old packages. There are better alternatives for most of the parts.
+
+The text content is kept for historical reasons, but the code has been removed to discourage copy-pasting old code and old techniques.
+
+---
+
 Note: There's an equivalent article for React in [Medium](https://medium.com/@tiangolo/react-in-docker-with-nginx-built-with-multi-stage-docker-builds-including-testing-8cc49d6ec305) and [GitHub](https://github.com/tiangolo/medium-posts/tree/master/react-in-docker).
 
 **Update**: Updated on 2018-06-29, a reader asked if there was any pre-built Docker image to simplify the process (especially for testing). And as this article got quite popular, I just built a Docker image to simplify everyone's process: [`tiangolo/node-frontend`](https://github.com/tiangolo/node-frontend). So, I just updated this article to simplify the process using that image, but kept the sections about doing everything by hand as "optional".

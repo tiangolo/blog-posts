@@ -52,6 +52,7 @@ class Item(BaseModel):
 
 app = FastAPI()
 
+
 @app.post("/items/")
 def create_item(item: Item):
     return item
@@ -193,6 +194,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+
 class Person(BaseModel):
     name: str
     child: Optional["Person"] = None
@@ -241,6 +243,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+
 class Person(BaseModel):
     name: str
     child: Optional[Person] = None
@@ -252,6 +255,7 @@ And then whenever `python` read our file `./main.py` it would see it as if it wa
 from typing import Optional
 
 from pydantic import BaseModel
+
 
 class Person(BaseModel):
     name: "str"
@@ -278,6 +282,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+
 class Person(BaseModel):
     name: str
     child: Optional[Person] = None
@@ -289,6 +294,7 @@ For example, declaring `Person | None` instead of `Optional[Person]`, avoiding t
 
 ```python
 from __future__ import annotations
+
 
 class Person:
     name: str
@@ -345,13 +351,12 @@ def create_app():
         description: Optional[str] = None
         price: float
 
-
     app = FastAPI()
-
 
     @app.post("/items/")
     def create_item(item: Item):
         return item
+
     return app
 
 
